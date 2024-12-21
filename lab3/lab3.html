@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles3.css">
+    <title>Лабораторна робота №3</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Галерея зображень</h1>
+    <button id="toggle-view">Режим перегляду</button>
+    <div class="gallery">
+        <img src="C:\Users\Marina\Pictures\cat.jpg" alt="cat" class="selected">
+        <img src="C:\Users\Marina\Pictures\flowers.jpg" alt="flowers">
+        <img src="C:\Users\Marina\Pictures\citrus.jpg" alt="citrus">
+    </div>
+    <div class="controls">
+        <button id="move-up">Вище</button>
+        <button id="move-down">Нижче</button>
+    </div>
+    <div class="settings">
+        <h3>Налаштування зображення</h3>
+        <div class="input-group">
+            <label for="width">Ширина:</label>
+            <input type="number" id="width" min="50" max="1000" placeholder="Введіть ширину">
+        </div>
+        <div class="input-group">
+            <label for="height">Висота:</label>
+            <input type="number" id="height" min="50" max="1000" placeholder="Введіть висоту">
+        </div>
+        <div class="input-group">
+            <label for="border">Товщина рамки:</label>
+            <input type="number" id="border" min="1" max="20" placeholder="Введіть товщину рамки">
+        </div>
+        <div class="input-group">
+            <label for="alt">Альтернативний текст:</label>
+            <input type="text" id="alt" placeholder="Введіть текст">
+        </div>
+        <button id="apply-settings">Застосувати</button>
+    </div>
+
+    <script>
+        const gallery = document.querySelector('.gallery');
+        const images = document.querySelectorAll('.gallery img');
+        const moveUpButton = document.getElementById('move-up');
+        const moveDownButton = document.getElementById('move-down');
+        const widthInput = document.getElementById('width');
+        const heightInput = document.getElementById('height');
+        const borderInput = document.getElementById('border');
+        const altInput = document.getElementById('alt');
+        const applySettingsButton = document.getElementById('apply-settings');
+        const toggleViewButton = document.getElementById('toggle-view');
+        const controls = document.querySelector('.controls');
+        const settings = document.querySelector('.settings');
+        const h1 = document.querySelector('h1');
+
+        gallery.addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                images.forEach(img => img.classList.remove('selected'));
+                event.target.classList.add('selected');
+            }
+        });
+
+        moveUpButton.addEventListener('click', () => {
+            const selected = document.querySelector('.selected');
+            if (selected && selected.previousElementSibling) {
+                gallery.insertBefore(selected, selected.previousElementSibling);
+            }
+        });
+
+        moveDownButton.addEventListener('click', () => {
+            const selected = document.querySelector('.selected');
+            if (selected && selected.nextElementSibling) {
+                gallery.insertBefore(selected.nextElementSibling, selected);
+            }
+        });
+
+        applySettingsButton.addEventListener('click', () => {
+            const selected = document.querySelector('.selected');
+            if (selected) {
+                if (widthInput.value) selected.style.width = widthInput.value + 'px';
+                if (heightInput.value) selected.style.height = heightInput.value + 'px';
+                if (borderInput.value) selected.style.borderWidth = borderInput.value + 'px';
+                if (altInput.value) selected.alt = altInput.value;
+            } else {
+                alert('Виберіть зображення для редагування');
+            }
+        });
+        
+        toggleViewButton.addEventListener('click', () => {
+            controls.classList.toggle('hidden');
+            settings.classList.toggle('hidden');
+            h1.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+
+
