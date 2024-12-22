@@ -1,6 +1,6 @@
 <?php
 
-/*$votesFile = 'votes.txt';
+$votesFile = 'votes.txt';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
     $vote = $_POST['vote'];
@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
     file_put_contents($votesFile, json_encode($results));
 }
 
-$results = file_exists($votesFile) ? json_decode(file_get_contents($votesFile), true) : [];*/
+$results = file_exists($votesFile) ? json_decode(file_get_contents($votesFile), true) : [];
+
 function mergeUniqueArrays($array1, $array2){
     $mergedArray = [];
     $uniqueArray = [];
