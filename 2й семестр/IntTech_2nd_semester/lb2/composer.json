@@ -1,0 +1,7 @@
+{
+    "name": "marina/inttech",
+    "type": "project",
+    "require": {
+        "mongodb/mongodb": "^1.21"
+    }
+}
